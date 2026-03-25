@@ -1,0 +1,65 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --brand-navy: #2f415d;
+  --brand-ivory: #d9d5cb;
+  --brand-copper: #f3ab59;
+  --brand-mist: #f3f1ea;
+  --radius-lg: 1.5rem;
+  --radius-xl: 2rem;
+  --shadow-soft: 0 12px 40px rgba(0, 0, 0, 0.08);
+  color: var(--brand-navy);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@font-face {
+  font-family: 'Azonix';
+  src: url('/brand/fonts/Azonix.otf') format('opentype');
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'SF Pro Display', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  background: #ffffff;
+}
+
+.hero-mist {
+  background-image: radial-gradient(circle at 15% 15%, rgba(47, 65, 93, 0.08), transparent 35%),
+    radial-gradient(circle at 80% 5%, rgba(243, 171, 89, 0.12), transparent 30%);
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+.reveal-up {
+  animation: reveal-up 0.7s ease-out both;
+}
+
+.font-brand {
+  font-family: 'Azonix', 'SF Pro Display', sans-serif;
+  letter-spacing: 0.02em;
+}
+
+@keyframes reveal-up {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
