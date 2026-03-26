@@ -1,42 +1,29 @@
 import Container from './Container';
-import { COMMERCE_URLS } from '../config/site';
-import { trackEvent } from '../lib/analytics';
 import BrandLogo from './BrandLogo';
+import { Link } from 'react-router-dom';
 
 function Footer({ dark = false }) {
   return (
     <footer
       className={
         dark
-          ? 'border-t border-brandIvory/12 py-10 text-brandIvory/65'
-          : 'border-t border-brandNavy/12 py-10 text-steel'
+          ? 'border-t border-brandIvory/12 bg-brandNight py-10 text-brandIvory/70'
+          : 'border-t border-brandNavy/12 bg-brandCloud py-10 text-steel'
       }
     >
       <Container className="flex flex-col gap-4 text-sm md:flex-row md:items-center md:justify-between">
-        <BrandLogo dark={dark} />
+        <BrandLogo variant={dark ? 'light' : 'dark'} />
         <div className="flex flex-wrap items-center gap-4">
-          <a
-            href={COMMERCE_URLS.preOrder}
-            className={dark ? 'transition-colors hover:text-brandIvory' : 'transition-colors hover:text-brandNavy'}
-            onClick={() => trackEvent('click_preorder', { location: 'footer' })}
-          >
-            Pre-order
-          </a>
-          <a
-            href={COMMERCE_URLS.checkout}
-            className={dark ? 'transition-colors hover:text-brandIvory' : 'transition-colors hover:text-brandNavy'}
-            onClick={() => trackEvent('click_buy', { location: 'footer' })}
-          >
-            Checkout
-          </a>
-          <a
-            href={COMMERCE_URLS.account}
-            className={dark ? 'transition-colors hover:text-brandIvory' : 'transition-colors hover:text-brandNavy'}
-          >
-            My Account
-          </a>
+          <Link to="/" className={dark ? 'transition-colors hover:text-brandIvory' : 'transition-colors hover:text-brandNavy'}>
+            Home
+          </Link>
+          <Link to="/bitaxe" className={dark ? 'transition-colors hover:text-brandIvory' : 'transition-colors hover:text-brandNavy'}>
+            Bitaxe
+          </Link>
+          <Link to="/koshh" className={dark ? 'transition-colors hover:text-brandIvory' : 'transition-colors hover:text-brandNavy'}>
+            Koshh
+          </Link>
         </div>
-        <p>Built in India for bitcoin sovereignty and practical ownership.</p>
       </Container>
     </footer>
   );

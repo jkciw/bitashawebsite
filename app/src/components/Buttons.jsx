@@ -35,6 +35,7 @@ export function PrimaryButton({
   href,
   children,
   dark = false,
+  glow = false,
   eventName,
   eventPayload,
   target,
@@ -50,8 +51,16 @@ export function PrimaryButton({
       rel={rel}
       className={
         dark
-          ? 'rounded-full bg-brandIvory px-6 py-3 text-sm font-medium text-brandNavy transition hover:bg-[#ece8de]'
-          : 'rounded-full bg-brandNavy px-6 py-3 text-sm font-medium text-brandIvory transition hover:bg-[#253651]'
+          ? `rounded-full px-6 py-3 text-sm font-medium transition ${
+              glow
+                ? 'bg-brandAmber text-brandNight shadow-[0_12px_34px_rgba(243,169,93,0.28)] hover:bg-[#ffba73]'
+                : 'bg-brandIvory text-brandNight hover:bg-[#f7f0e2]'
+            }`
+          : `rounded-full px-6 py-3 text-sm font-medium transition ${
+              glow
+                ? 'bg-brandAmber text-brandNight shadow-[0_12px_30px_rgba(243,169,93,0.22)] hover:bg-[#ffba73]'
+                : 'bg-brandNavy text-brandIvory hover:bg-[#26384e]'
+            }`
       }
     >
       {children}
@@ -79,8 +88,8 @@ export function SecondaryButton({
       rel={rel}
       className={
         dark
-          ? 'rounded-full border border-brandIvory/40 px-6 py-3 text-sm font-medium text-brandIvory transition hover:border-brandIvory/80'
-          : 'rounded-full border border-brandNavy/25 px-6 py-3 text-sm font-medium text-brandNavy transition hover:border-brandNavy/55'
+          ? 'rounded-full border border-brandIvory/35 bg-brandIvory/5 px-6 py-3 text-sm font-medium text-brandIvory transition hover:border-brandIvory/70 hover:bg-brandIvory/10'
+          : 'rounded-full border border-brandNavy/20 bg-white/70 px-6 py-3 text-sm font-medium text-brandNavy transition hover:border-brandNavy/45 hover:bg-white'
       }
     >
       {children}

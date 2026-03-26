@@ -3,13 +3,27 @@
 @tailwind utilities;
 
 :root {
-  --brand-navy: #2f415d;
-  --brand-ivory: #d9d5cb;
-  --brand-copper: #f3ab59;
-  --brand-mist: #f3f1ea;
+  --brand-night: #161b33;
+  --brand-midnight: #0d2748;
+  --brand-navy: #344861;
+  --brand-indigo: #22243d;
+  --brand-ember: #9f573f;
+  --brand-amber: #f3a95d;
+  --brand-amber-soft: #ffbf73;
+  --brand-ivory: #ece5d6;
+  --brand-cloud: #f4efe6;
+  --brand-mist: #e7ddce;
   --radius-lg: 1.5rem;
   --radius-xl: 2rem;
-  --shadow-soft: 0 12px 40px rgba(0, 0, 0, 0.08);
+  --shadow-soft: 0 18px 60px rgba(8, 12, 26, 0.18);
+  --hero-gradient:
+    radial-gradient(circle at 50% 108%, rgba(255, 186, 100, 0.96), rgba(255, 186, 100, 0.42) 18%, rgba(159, 87, 63, 0.28) 34%, rgba(13, 39, 72, 0.16) 54%, transparent 70%),
+    radial-gradient(circle at 50% 26%, rgba(10, 34, 67, 0.88), transparent 34%),
+    linear-gradient(180deg, #23192e 0%, #18223d 26%, #102a4b 44%, #5b403e 73%, #c48552 100%);
+  --koshh-gradient:
+    radial-gradient(circle at 78% 12%, rgba(255, 191, 115, 0.08), transparent 24%),
+    radial-gradient(circle at 14% 80%, rgba(159, 87, 63, 0.12), transparent 30%),
+    linear-gradient(180deg, #15192a 0%, #1a2235 46%, #223149 100%);
   color: var(--brand-navy);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -32,12 +46,88 @@
 body {
   margin: 0;
   font-family: 'SF Pro Display', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  background: #ffffff;
+  background: var(--brand-cloud);
+}
+
+.site-gradient-page {
+  background-color: var(--brand-cloud);
+  background-image:
+    radial-gradient(
+      130% 78% at 50% 2%,
+      rgba(16, 40, 74, 0.95) 0%,
+      rgba(31, 34, 62, 0.88) 24%,
+      rgba(102, 67, 60, 0.72) 42%,
+      rgba(197, 134, 82, 0.56) 58%,
+      rgba(233, 213, 189, 0.24) 73%,
+      rgba(244, 239, 230, 0) 84%
+    ),
+    linear-gradient(180deg, #122746 0%, #1d2b48 20%, #5a433f 40%, #b47d54 56%, #e6d0b3 72%, #f4efe6 100%);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-position: top center;
+}
+
+.site-gradient-page .bg-brandCloud {
+  background-color: transparent;
+  backdrop-filter: none;
+}
+
+.site-gradient-page footer.bg-brandCloud {
+  background-color: transparent;
+}
+
+.site-gradient-page .brand-hero {
+  background-image: none;
+}
+
+.site-gradient-page .brand-hero::before {
+  display: none;
+}
+
+.site-gradient-page .brand-hero-quiet {
+  background-image: none;
 }
 
 .hero-mist {
-  background-image: radial-gradient(circle at 15% 15%, rgba(47, 65, 93, 0.08), transparent 35%),
-    radial-gradient(circle at 80% 5%, rgba(243, 171, 89, 0.12), transparent 30%);
+  background-image: var(--hero-gradient);
+}
+
+.brand-hero {
+  background-image: var(--hero-gradient);
+  position: relative;
+}
+
+.brand-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 50% 100%, rgba(255, 198, 126, 0.45), transparent 32%),
+    linear-gradient(180deg, rgba(7, 13, 25, 0.06), rgba(7, 13, 25, 0));
+  pointer-events: none;
+}
+
+.brand-hero-quiet {
+  background-image: var(--koshh-gradient);
+}
+
+.surface-panel {
+  background: rgba(13, 18, 32, 0.72);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(236, 229, 214, 0.12);
+  box-shadow: 0 18px 50px rgba(8, 12, 26, 0.16);
+}
+
+.surface-card {
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(52, 72, 97, 0.1);
+  box-shadow: 0 18px 42px rgba(8, 12, 26, 0.08);
+}
+
+.surface-card-dark {
+  background: #25354b;
+  border: 1px solid rgba(236, 229, 214, 0.12);
+  box-shadow: 0 18px 48px rgba(3, 6, 15, 0.22);
 }
 
 .text-balance {
@@ -51,6 +141,14 @@ body {
 .font-brand {
   font-family: 'Azonix', 'SF Pro Display', sans-serif;
   letter-spacing: 0.02em;
+}
+
+.section-transition {
+  position: relative;
+}
+
+.section-transition::before {
+  display: none;
 }
 
 @keyframes reveal-up {

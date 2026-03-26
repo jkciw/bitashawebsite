@@ -16,8 +16,8 @@ function ProductCard({
     <article
       className={
         dark
-          ? 'reveal-up rounded-3xl border border-brandIvory/12 bg-[#253651] p-6 text-brandIvory shadow-card'
-          : 'reveal-up rounded-3xl border border-brandNavy/12 bg-white p-6 shadow-card'
+          ? 'surface-card-dark reveal-up rounded-3xl p-6 text-brandIvory'
+          : 'surface-card reveal-up rounded-3xl p-6 text-brandNight'
       }
     >
       <ImagePlaceholder

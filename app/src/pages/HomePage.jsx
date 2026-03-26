@@ -1,89 +1,100 @@
 import PageLayout from '../components/PageLayout';
 import Hero from '../components/Hero';
 import Container from '../components/Container';
-import ProductCard from '../components/ProductCard';
 import { PrimaryButton, SecondaryButton } from '../components/Buttons';
 import Footer from '../components/Footer';
 import { usePageMeta } from '../lib/seo';
-import { COMMERCE_URLS } from '../config/site';
+import ProductSpotlight from '../components/ProductSpotlight';
+import { MARKETING_CONTENT } from '../config/marketing';
 
 function HomePage() {
+  const { hero, context, products, meta } = MARKETING_CONTENT.home;
+
   usePageMeta({
-    title: 'Bitasha | Bitcoin Hardware Built in India',
-    description:
-      'Bitasha builds premium bitcoin-native hardware: Bitaxe open-source home miner and Koshh metal seed backup.',
+    title: meta.title,
+    description: meta.description,
     path: '/',
   });
 
   return (
-    <PageLayout>
-      <section className="hero-mist">
+    <PageLayout headerMode="overlay">
+      <section className="brand-hero overflow-hidden pt-10 md:pt-14">
         <Hero
-          title="Bitcoin hardware, made in India."
-          description="Soverign tools for self-custody, mining and long-term ownership."
+          dark
+          showBrandLogo
+          title={hero.headline}
+          description={hero.subheadline}
+          supportNote={hero.supportNote}
+          titleClassName="mx-auto max-w-5xl text-brandIvory md:text-7xl"
+          containerClassName="relative z-10 pb-28 md:pb-36"
           actions={[
-            <PrimaryButton key="preorder" href={COMMERCE_URLS.preOrder} eventName="click_preorder" eventPayload={{ location: 'home_hero' }}>
-              Pre-order
+            <PrimaryButton
+              key="koshh"
+              href={hero.primaryCta.href}
+              glow
+              dark
+              eventName={hero.primaryCta.eventName}
+              eventPayload={hero.primaryCta.eventPayload}
+            >
+              {hero.primaryCta.label}
             </PrimaryButton>,
-            <SecondaryButton key="bitaxe" to="/bitaxe" eventName="view_product" eventPayload={{ product: 'bitaxe', location: 'home_hero' }}>
-              Explore Products
+            <SecondaryButton
+              key="bitaxe"
+              to={hero.secondaryCta.to}
+              dark
+              eventName={hero.secondaryCta.eventName}
+              eventPayload={hero.secondaryCta.eventPayload}
+            >
+              {hero.secondaryCta.label}
             </SecondaryButton>,
           ]}
         />
       </section>
 
-      <section className="pb-20 md:pb-28">
-        <Container>
-          <div className="grid gap-6 md:grid-cols-2">
-            <ProductCard
-              title="Bitaxe"
-              description="An open-source bitcoin home miner designed as a compact desktop object. Precise, hackable, and genuinely useful."
-              tone="light"
-              imageSrc="/products/bitaxe-group.png"
-              imageAlt="Multiple Bitaxe miners arranged on a table"
-              cta={{
-                label: 'Explore Bitaxe',
-                to: '/bitaxe',
-                eventName: 'view_product',
-                eventPayload: { product: 'bitaxe', location: 'home_grid' },
-              }}
-              secondaryCta={{
-                label: 'Pre-order',
-                href: COMMERCE_URLS.preOrder,
-                eventName: 'click_preorder',
-                eventPayload: { product: 'bitaxe', location: 'home_grid' },
-              }}
-            />
-            <ProductCard
-              title="Koshh"
-              description="A metal seed backup plate built for durability and quiet confidence. Long-term security without complexity."
-              tone="dark"
-              cta={{
-                label: 'Explore Koshh',
-                to: '/koshh',
-                eventName: 'view_product',
-                eventPayload: { product: 'koshh', location: 'home_grid' },
-              }}
-              secondaryCta={{
-                label: 'Pre-order',
-                href: COMMERCE_URLS.preOrder,
-                eventName: 'click_preorder',
-                eventPayload: { product: 'koshh', location: 'home_grid' },
-              }}
-            />
+      <section className="section-transition -mt-20 bg-brandCloud py-16 md:-mt-24 md:py-24">
+        <Container className="max-w-5xl">
+          <p className="font-brand text-xs uppercase tracking-[0.18em] text-brandIvory/75">Context</p>
+          <h2 className="mt-3 max-w-3xl text-3xl font-semibold tracking-tight text-brandIvory md:text-4xl">
+            {context.headline}
+          </h2>
+          <div className="mt-8 max-w-3xl text-lg leading-relaxed text-brandIvory/90">
+            <p>{context.body}</p>
+            <p className="mt-4 font-semibold text-brandIvory">{context.highlight}</p>
           </div>
         </Container>
       </section>
 
-      <section className="border-y border-brandNavy/10 bg-cloud py-16 md:py-20">
-        <Container className="grid gap-8 md:grid-cols-3">
-          <div>
-            <p className="font-brand text-xs uppercase tracking-[0.18em] text-brandNavy/70">Built in India</p>
-            <h3 className="mt-3 text-2xl font-semibold tracking-tight text-brandNavy">Global-grade quality, local intent</h3>
-          </div>
-          <p className="text-steel md:col-span-2">
-            Bitasha creates bitcoin-native hardware that feels at home on a desk, not in a hype cycle. Every product is purposefully designed for clarity, longevity, and direct ownership.
-          </p>
+      <section className="bg-brandCloud py-16 md:py-20">
+        <Container>
+          <ProductSpotlight
+            tone="light"
+            eyebrow={products.koshh.eyebrow}
+            headline={products.koshh.headline}
+            subheadline={products.koshh.subheadline}
+            body={products.koshh.body}
+            imageLabel="Koshh icon"
+            imageSrc={products.koshh.imageSrc}
+            imageAlt={products.koshh.imageAlt}
+            imageFit={products.koshh.imageFit}
+            cta={products.koshh.cta}
+          />
+        </Container>
+      </section>
+
+      <section className="bg-brandCloud pb-20 md:pb-24">
+        <Container>
+          <ProductSpotlight
+            tone="dark"
+            eyebrow={products.bitaxe.eyebrow}
+            headline={products.bitaxe.headline}
+            subheadline={products.bitaxe.subheadline}
+            body={products.bitaxe.body}
+            imageLabel="Bitaxe group image"
+            imageSrc={products.bitaxe.imageSrc}
+            imageAlt={products.bitaxe.imageAlt}
+            cta={products.bitaxe.cta}
+            reverse
+          />
         </Container>
       </section>
 

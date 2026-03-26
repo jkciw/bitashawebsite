@@ -1,13 +1,13 @@
-function ImagePlaceholder({ label, tone = 'light', src, alt = '' }) {
+function ImagePlaceholder({ label, tone = 'light', src, alt = '', fit = 'cover' }) {
   const classes =
     tone === 'dark'
-      ? 'border-brandIvory/20 bg-gradient-to-b from-[#384f70] to-[#22334b]'
-      : 'border-brandNavy/10 bg-gradient-to-b from-[#f6f3eb] to-[#d9d5cb]';
+      ? 'surface-card-dark'
+      : 'surface-card';
 
   return (
-    <div className={`relative h-72 w-full overflow-hidden rounded-3xl border ${classes} shadow-card md:h-96`}>
+    <div className={`relative h-72 w-full overflow-hidden rounded-3xl ${classes} md:h-96`}>
       {src ? (
-        <img src={src} alt={alt} className="h-full w-full object-cover" />
+        <img src={src} alt={alt} className={`h-full w-full ${fit === 'contain' ? 'object-contain p-10 md:p-14' : 'object-cover'}`} />
       ) : (
         <>
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(255,255,255,.25),transparent_42%)]" />

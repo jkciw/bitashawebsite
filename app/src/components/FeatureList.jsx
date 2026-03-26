@@ -6,11 +6,13 @@ function FeatureList({ items, dark = false }) {
           key={item.title}
           className={
             dark
-              ? 'rounded-2xl border border-brandIvory/10 bg-brandIvory/5 p-5'
-              : 'rounded-2xl border border-brandNavy/12 bg-cloud p-5'
+              ? 'surface-card-dark rounded-2xl p-5'
+              : 'surface-card rounded-2xl p-5'
           }
         >
-          <h4 className="text-base font-semibold">{item.title}</h4>
+          <h4 className={dark ? 'text-base font-semibold text-brandIvory' : 'text-base font-semibold text-brandNight'}>
+            {item.title}
+          </h4>
           <p className={dark ? 'mt-2 text-sm text-brandIvory/75' : 'mt-2 text-sm text-steel'}>{item.text}</p>
         </li>
       ))}

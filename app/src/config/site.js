@@ -1,14 +1,15 @@
 export const SITE = {
   name: 'Bitasha',
   url: 'https://bitasha.com',
-  defaultTitle: 'Bitasha | Bitcoin Hardware Built in India',
+  defaultTitle: 'Bitasha | Bitcoin hardware. Done right.',
   defaultDescription:
-    'Minimal bitcoin-native hardware for practical sovereignty: Bitaxe home miner and Koshh seed backup.',
+    'Simple, reliable Bitcoin hardware designed in India and used around the world.',
 };
 
 export const COMMERCE_URLS = {
-  preOrder: 'https://bitasha.com/pre-order/',
-  cart: 'https://bitasha.com/cart/',
+  fallbackShop: 'https://bitasha.com/pre-order/',
+  koshhPrimary: 'https://bitasha.com/pre-order/',
+  bitaxePrimary: 'https://bitasha.com/pre-order/',
   checkout: 'https://bitasha.com/checkout/',
   account: 'https://bitasha.com/my-account/',
 };

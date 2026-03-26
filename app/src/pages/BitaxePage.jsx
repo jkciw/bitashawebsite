@@ -6,75 +6,79 @@ import Footer from '../components/Footer';
 import { PrimaryButton, SecondaryButton } from '../components/Buttons';
 import ProductSpotlight from '../components/ProductSpotlight';
 import { usePageMeta } from '../lib/seo';
-import { COMMERCE_URLS } from '../config/site';
-
-const features = [
-  {
-    title: 'Open-source hardware',
-    text: 'Transparent stack for builders who want to inspect, modify, and improve every layer.',
-  },
-  {
-    title: 'Compact footprint',
-    text: 'Desk-friendly dimensions with a physical form that feels engineered and intentional.',
-  },
-  {
-    title: 'Home mining ready',
-    text: 'Designed for practical home setups with clean setup flow and reliable operation.',
-  },
-];
+import { MARKETING_CONTENT } from '../config/marketing';
 
 function BitaxePage() {
+  const { hero, introLine, spotlight, features, featuresHeading, meta } = MARKETING_CONTENT.bitaxe;
+
   usePageMeta({
-    title: 'Bitaxe by Bitasha | Open-Source Bitcoin Home Miner',
-    description:
-      'Bitaxe is a compact, open-source bitcoin home miner engineered for practical ownership and deep hackability.',
+    title: meta.title,
+    description: meta.description,
     path: '/bitaxe',
   });
 
   return (
-    <PageLayout>
-      <section className="hero-mist border-b border-brandNavy/10">
+    <PageLayout headerMode="overlay">
+      <section className="brand-hero overflow-hidden pt-10 md:pt-14">
         <Hero
-          eyebrow="Bitaxe"
-          title="Open-source bitcoin mining for your desk"
-          description="A compact home miner that combines precise hardware design with deep hackability. Built for people who want bitcoin participation to be tangible."
+          dark
+          eyebrow={hero.eyebrow}
+          title={hero.headline}
+          description={hero.subheadline}
+          supportNote={hero.supportNote}
+          titleClassName="text-brandIvory"
+          containerClassName="relative z-10 pb-24 md:pb-28"
           actions={[
             <PrimaryButton
-              key="preorder"
-              href={COMMERCE_URLS.preOrder}
-              eventName="click_preorder"
-              eventPayload={{ product: 'bitaxe', location: 'bitaxe_hero' }}
+              key="bitaxe"
+              href={hero.primaryCta.href}
+              glow
+              dark
+              eventName={hero.primaryCta.eventName}
+              eventPayload={hero.primaryCta.eventPayload}
             >
-              Pre-order Bitaxe
+              {hero.primaryCta.label}
             </PrimaryButton>,
-            <SecondaryButton key="home" to="/">
-              Back to Home
+            <SecondaryButton
+              key="home"
+              to={hero.secondaryCta.to}
+              dark
+              eventName={hero.secondaryCta.eventName}
+              eventPayload={hero.secondaryCta.eventPayload}
+            >
+              {hero.secondaryCta.label}
             </SecondaryButton>,
           ]}
         />
       </section>
 
-      <section className="py-16 md:py-24">
+      <section className="bg-brandCloud py-14 md:py-18">
+        <Container className="max-w-3xl text-center">
+          <p className="text-balance text-xl leading-relaxed text-brandIvory/90 md:text-2xl">{introLine}</p>
+        </Container>
+      </section>
+
+      <section className="bg-brandCloud py-16 md:py-24">
         <Container>
           <ProductSpotlight
             tone="light"
-            imageLabel="Bitaxe Product Image"
-            imageSrc="/products/bitaxe-single.png"
-            imageAlt="Close-up Bitaxe miner setup"
-            title="Precise by design. Flexible by nature."
-            description="Bitaxe keeps the product language clean while retaining full builder ergonomics. It feels premium in-hand, yet remains grounded in practical, open bitcoin ownership."
-            cta={{
-              label: 'Buy via Pre-order',
-              href: COMMERCE_URLS.preOrder,
-              eventName: 'click_buy',
-              eventPayload: { product: 'bitaxe', location: 'bitaxe_spotlight' },
-            }}
+            eyebrow={spotlight.eyebrow}
+            headline={spotlight.headline}
+            body={spotlight.body}
+            imageLabel="Bitaxe product image"
+            imageSrc={spotlight.imageSrc}
+            imageAlt={spotlight.imageAlt}
+            cta={spotlight.cta}
           />
         </Container>
       </section>
 
-      <section className="pb-20 md:pb-24">
+      <section className="bg-brandCloud pb-20 md:pb-24">
         <Container>
+          <div className="mb-8 max-w-2xl">
+            <p className="font-brand text-xs uppercase tracking-[0.18em] text-brandNavy/60">Features</p>
+            <h2 className="mt-3 text-3xl font-semibold tracking-tight text-brandNight md:text-4xl">{featuresHeading}</h2>
+          </div>
           <FeatureList items={features} />
         </Container>
       </section>

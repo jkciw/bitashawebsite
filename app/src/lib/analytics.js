@@ -23,7 +23,7 @@ export function usePageView() {
   const location = useLocation();
 
   useEffect(() => {
-    trackEvent('view_product_route', {
+    trackEvent('view_page_route', {
       path: location.pathname,
       search: location.search,
     });
